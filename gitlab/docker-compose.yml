@@ -1,0 +1,28 @@
+# https://docs.gitlab.com/omnibus/docker/#install-gitlab-using-docker-compose
+# macOS: export GITLAB_HOME=$HOME
+# Linux: export GITLAB_HOME=/srv
+# 需要配置hosts: 127.0.0.1   gitlab.playground.io
+version: "3.7"
+services:
+  gitlab:
+    image: gitlab/gitlab-ce:latest
+    container_name: gitlab
+    restart: always
+    hostname: 'gitlab.playground.io'
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'http://gitlab.playground.io:8929'
+        gitlab_rails['gitlab_shell_ssh_port'] = 2222
+        # Add any other gitlab.rb configuration here, each on its own line
+    ports:
+      - "2222:22"
+      - "8929:8929"
+    volumes:
+      - ./gitlab/data:/var/opt/gitlab
+      - ./gitlab/logs:/var/log/gitlab
+      - ./gitlab/config:/etc/gitlab
+  gitlab-runner:
+    image: gitlab/gitlab-runner:alpine
+    restart: always
+    volumes:
+      - ./gitlab-runner/config:/etc/gitlab-runner
