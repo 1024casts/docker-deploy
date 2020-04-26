@@ -7,7 +7,7 @@ services:
   gitlab:
     image: gitlab/gitlab-ce:latest
     container_name: gitlab
-    restart: always
+    restart: unless-stopped
     hostname: 'gitlab.playground.io'
     environment:
       GITLAB_OMNIBUS_CONFIG: |
@@ -21,8 +21,14 @@ services:
       - ./gitlab/data:/var/opt/gitlab
       - ./gitlab/logs:/var/log/gitlab
       - ./gitlab/config:/etc/gitlab
+    networks:
+      - gitlab
   gitlab-runner:
     image: gitlab/gitlab-runner:alpine
-    restart: always
+    restart: unless-stopped
+    depends_on:
+      - gitlab
     volumes:
       - ./gitlab-runner/config:/etc/gitlab-runner
+    networks:
+      - gitlab
