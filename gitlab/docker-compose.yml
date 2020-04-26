@@ -33,3 +33,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     networks:
       - gitlab
+
+networks:
+  gitlab:
+    driver: bridge
