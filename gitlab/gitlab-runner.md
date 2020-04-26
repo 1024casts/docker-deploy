@@ -26,11 +26,21 @@ docker-compose up
 
 ## 注册runner
 
-在gitlab的路由 /admin/runners 下获取到URL和token,然后开始注册
+在gitlab的路由 http://yourgitlab.com/admin/runners 下获取到URL和token,然后开始注册
 
 ```bash
 sudo docker exec -it gitlab-runner gitlab-ci-multi-runner register
 ```
+选择默认的 shell 即可。
+
+## 新项目接入CI/CD系统
+
+- 1. 新建 GitLab 项目
+- 2. 配置 GitLab Runner
+- 3. 添加.gitlab-ci.yml 文件
+
+这里需要注意 tag 的情况。
+
 
 ## Reference
 
@@ -38,3 +48,4 @@ sudo docker exec -it gitlab-runner gitlab-ci-multi-runner register
 - [Runner和GitLab CE / EE兼容性列表](https://gitlab.com/gitlab-org/gitlab-runner)
 - [Docker搭建自己的Gitlab CI Runner](https://blog.csdn.net/aixiaoyang168/article/details/72168834)
 - [GitLab CI/CD environment variables](https://docs.gitlab.com/ce/ci/variables/)
+- [花椒前端基于 GitLab CI/CD 的前端自动化构建、发布实践](https://www.jianshu.com/p/0ab8bbe05d27)
