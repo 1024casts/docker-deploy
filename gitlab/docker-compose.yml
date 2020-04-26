@@ -30,5 +30,6 @@ services:
       - gitlab
     volumes:
       - ./gitlab-runner/config:/etc/gitlab-runner
+      - /var/run/docker.sock:/var/run/docker.sock
     networks:
       - gitlab
