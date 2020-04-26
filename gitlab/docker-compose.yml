@@ -7,11 +7,11 @@ services:
   gitlab:
     image: gitlab/gitlab-ce:latest
     container_name: gitlab
-    restart: unless-stopped
-    hostname: 'gitlab.playground.io'
+    restart: always
+    hostname: '你的宿主机IP或域名'
     environment:
       GITLAB_OMNIBUS_CONFIG: |
-        external_url 'http://gitlab.playground.io:8929'
+        external_url 'http://你的宿主机IP或域名:8929'
         gitlab_rails['gitlab_shell_ssh_port'] = 2222
         # Add any other gitlab.rb configuration here, each on its own line
     ports:
@@ -25,7 +25,7 @@ services:
       - gitlab
   gitlab-runner:
     image: gitlab/gitlab-runner:alpine
-    restart: unless-stopped
+    restart: always
     depends_on:
       - gitlab
     volumes:
