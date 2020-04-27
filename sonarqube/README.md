@@ -154,6 +154,14 @@ sonar-scanner \
 下面我们主要是在gitlab做处理，配置如下
 
 ```yaml
+image:
+  name: sonarsource/sonar-scanner-cli:latest
+  entrypoint: [""]
+variables:
+  SONAR_TOKEN: "your-sonarqube-token"
+  SONAR_HOST_URL: "http://your-sonarqube-instance.org"
+  GIT_DEPTH: 0
+
 stages:
   - analyze
   - build
@@ -216,4 +224,7 @@ fi
 参考
 - [SonarQube 之 gitlab-plugin 配合 gitlab-ci 完成每次 commit 代码检测](https://blog.csdn.net/aixiaoyang168/article/details/78115646)
 - [Docker搭建自己的Gitlab CI Runner](https://blog.csdn.net/aixiaoyang168/article/details/72168834)
+- [Running Analysis with GitLab CI/CD](https://docs.sonarqube.org/latest/analysis/gitlab-cicd/)
+- [Jenkins+SonarQube+Gitlab搭建自动化持续代码扫描质量平台](https://blog.csdn.net/zuozewei/article/details/84539396)
+- [有赞 GO 项目单测、集成、增量覆盖率统计与分析](https://mp.weixin.qq.com/s/mNGkMggkkuRSuflHw3vIyA)
 

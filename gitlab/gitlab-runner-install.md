@@ -1,6 +1,6 @@
 # gitlab-runner
 
-## docker 安装gitlab-runner
+## docker 安装
 
 
 ### 拉取gitlab-runner镜像
@@ -31,6 +31,15 @@ docker-compose up
 ```bash
 sudo docker exec -it gitlab-runner gitlab-ci-multi-runner register
 ```
+
+进入交互模式后，需要提供以下内容：
+
+- 输入 CI URL
+- 输入 Token
+- 输入 Runner 的名字
+- 输入 tag 的名字, 注意：这个tag会和gitlab-ci.yml里job里指定的tag相关联
+- 选择 Runner 的类型，简单起见还是选 Shell 吧
+- 完成
 
 ## Reference
 
