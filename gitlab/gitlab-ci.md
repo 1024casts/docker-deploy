@@ -401,3 +401,5 @@ workflow:
 - [Pipelines for Merge Requests](https://docs.gitlab.com/ee/ci/merge_request_pipelines/index.html)
 - [Go工具& GitLab-让你如何轻松进行持续集成](https://www.ctolib.com/topics-127012.html)
 - https://gitlab.com/pantomath-io/demo-tools
+- [Golang Test Coverage](https://yizhi.ren/2019/06/15/gocoverage/)
+- [像 Awesome-Go 一样提升企业 Go 项目代码质量]https://www.gitdig.com/golang-ci-code-review/
