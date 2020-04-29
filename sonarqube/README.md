@@ -52,6 +52,7 @@ docker run -e SONAR_HOST_URL=http://localhost:9000 -it -v "$(pwd):/usr/src" sona
 ### 配置sonarqube地址
 
 进入到下载目录,可以看到下面四个目录:
+
 ```bash
 .
 ├── bin
@@ -93,7 +94,6 @@ INFO:  -h,--help             Display help information
 INFO:  -v,--version          Display version information
 INFO:  -X,--debug            Produce execution debug output
 ```
-
 
 ### 在项目中进行配置
 
@@ -151,7 +151,7 @@ sonar-scanner \
 - jenkins里配置脚本，但是多个项目的话每个都需要配置
 - jenkins里使用插件配置(SonarQube Scanner for Jenkins)，好处是一次配置多个项目可以共用
 
-下面我们主要是在gitlab做处理，配置如下
+### 下面我们主要是在gitlab做处理，配置如下
 
 ```yaml
 image:
@@ -221,10 +221,18 @@ if [ $? -eq 0 ]; then
 fi
 ```
 
-参考
+
+### gitlab-plugin 配合 gitlab-ci 完成每次
+
+#### 参考
+
+ - [SonarQube 之 gitlab-plugin 配合 gitlab-ci 完成每次 commit 代码检测](https://cloud.tencent.com/developer/article/1010601)
+ - [使用gitlab-ci构建持续集成最佳实践](https://www.imshanks.com/2019/10/02/gitlabci-run-test-review-by-sornar-build-docker-image-and-push-to-harbor.html)
+
+## 参考
+
 - [SonarQube 之 gitlab-plugin 配合 gitlab-ci 完成每次 commit 代码检测](https://blog.csdn.net/aixiaoyang168/article/details/78115646)
 - [Docker搭建自己的Gitlab CI Runner](https://blog.csdn.net/aixiaoyang168/article/details/72168834)
 - [Running Analysis with GitLab CI/CD](https://docs.sonarqube.org/latest/analysis/gitlab-cicd/)
 - [Jenkins+SonarQube+Gitlab搭建自动化持续代码扫描质量平台](https://blog.csdn.net/zuozewei/article/details/84539396)
 - [有赞 GO 项目单测、集成、增量覆盖率统计与分析](https://mp.weixin.qq.com/s/mNGkMggkkuRSuflHw3vIyA)
-
