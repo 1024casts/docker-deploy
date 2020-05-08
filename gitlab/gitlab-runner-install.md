@@ -48,7 +48,7 @@ sudo docker exec -it gitlab-runner gitlab-ci-multi-runner register
 - 输入 Token
 - 输入 Runner 的名字
 - 输入 tag 的名字, 注意：这个tag会和gitlab-ci.yml里job里指定的tag相关联
-- 选择 Runner 的类型，简单起见还是选 Shell 吧
+- 选择 Runner 的类型，选 docker, 在 stage 里可以方便使用 docker的image
 - 完成
 
 ## Reference
