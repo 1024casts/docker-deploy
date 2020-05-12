@@ -142,7 +142,7 @@ $ curl -L https://packages.gitlab.com/install/repositories/runner/gitlab-ci-mult
 $ sudo yum install gitlab-ci-multi-runner
 ```
 
-也可以通过docekr方式来安装，参考 `gitlab-runner.md`。
+也可以通过docekr方式来安装，参考 `gitlab-runner-install.md`。
 
 ### 注册 runner
 
@@ -172,7 +172,7 @@ Please enter the gitlab-ci tags for this runner (comma separated):
 demo,docker   // 给该 Runner 指派 tags, 稍后也可以在 GitLab's UI 修改, 这里也可以直接回车， 使用默认值
 
 Please enter the executor: ssh, docker+machine, docker-ssh+machine, kubernetes, docker, parallels, virtualbox, docker-ssh, shell:
-shell  // 选择runner的类型， 这里用shell就好，也可以使用docker
+shell  // 选择runner的类型， 一般选择shell，也可以使用docker
 
 Please enter the default Docker image (e.g. ruby:2.6): // 如果选择了docker会有这一步
 golang:latest  // 镜像名称
@@ -205,31 +205,31 @@ stages:
   - test
 
 before_script:
-  - mkdir -p /go/src/gitlab.com/go/go-demo /go/src/_/builds
-  - cp -r $CI_PROJECT_DIR /go/src/gitlab.com/go/go-demo
-  - ln -s /go/src/gitlab.com/go/go-demo /go/src/_/builds/go-demo  
-  - cd /go/src/_/builds/go-demo
+  - mkdir -p /go/src/gitlab.com/easygogo/go-ci-demo /go/src/_/builds
+  - cp -r $CI_PROJECT_DIR /go/src/gitlab.com/easygogo/go-ci-demo
+  - ln -s /go/src/gitlab.com/easygogo/go-ci-demo /go/src/_/builds/go-ci-demo  
+  - cd /go/src/_/builds/go-ci-demo
 
 unit_tests:
   stage: test
   script:
     - make test
   tags:
-    - demo
+    - docker
 
 race_detector:
   stage: test
   script:
     - make race
   tags:
-    - demo
+    - docker
 
 coverage:
   stage: test
   script:
     - make coverage
   tags:
-    - demo
+    - docker
 
 coverage_report:
   stage: test
@@ -237,8 +237,8 @@ coverage_report:
     - make coverhtml
   only:
   - master
-  tags: 
-    - demo
+  tags:
+    - docker
 
 lint:
   stage: test
@@ -251,7 +251,7 @@ build:
     - pwd
     - go build .
   tags:
-    - demo
+    - docker
 ```
 
 ### 定义 Makefile
@@ -260,8 +260,8 @@ build:
 这样的话，.gitlab-ci.yml文件就会更加简洁了。当然了，Makefile同样也可以调用 shell 脚本文件.
 
 ```makefile
-PROJECT_NAME := "go-demo"
-PKG := "http://182.92.238.120:8929/root/$(PROJECT_NAME)"
+PROJECT_NAME := "go-ci-demo"
+PKG := "http://gitlab.com/easygogo/$(PROJECT_NAME)"
 PKG_LIST := $(shell go list ./... | grep -v /vendor/)
 GO_FILES := $(shell find . -name '*.go' | grep -v /vendor/ | grep -v _test.go)
 
@@ -317,38 +317,6 @@ fi
 rm -rf "$COVERAGE_DIR";
 ```
 
-#### dockerfile
-
-```bash
-FROM golang:1.9.2
-
-#定义环境变量 alpine专用
-#ENV TIME_ZONE Asia/Shanghai
-
-ADD application /go/src/demo/
-
-WORKDIR /go/src/demo
-
-ADD run_application.sh /root/
-RUN chmod 755 /root/run_application.sh
-CMD sh /root/run_application.sh
-
-EXPOSE 8080
-```
-
-#### run_application.sh
-
-```bash
-#!/bin/bash
-
-#映射ip
-cp /usr/share/zoneinfo/Asia/Shanghai  /etc/localtime
-
-cd /go/src/demo/
-
-./application
-```
-
 ### 执行 MR/PR
 
 上面配置好以后，那如何指定什么时候执行对应的stage呢，是MR还是一提交就执行，这些其实也是可以定义的，需要在 .gitlab-ci.yml 加上workflow:rules, 如下：
@@ -357,7 +325,7 @@ cd /go/src/demo/
 workflow:
   rules:
     - if: $CI_MERGE_REQUEST_ID             # Execute jobs in merge request context
-    - if: $CI_COMMIT_BRANCH == 'test'      # Execute jobs when a new commit is pushed to master branch
+    - if: $CI_COMMIT_BRANCH == 'test'      # Execute jobs when a new commit is pushed to test branch
 ```
 
 官方配置文档：https://docs.gitlab.com/ee/ci/merge_request_pipelines/index.html

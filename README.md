@@ -7,6 +7,7 @@
 ## 设置代理
 
 macOS下设置，在 `.docker/daemon.json` 添加
+
 ```bash
 {
   "experimental" : false,
@@ -67,5 +68,19 @@ docker rm
 
 # 清理所有处于终止状态的容器
 docker container prune
+
+# 删除所有容器
+docker stop `docker ps -q -a` | xargs docker rm
+
+# 删除所有标签为none的镜像
+docker images|grep \<none\>|awk '{print $3}'|xargs docker rmi
+
+# 查找容器IP地址
+docker inspect 容器名或ID | grep "IPAddress"
+
+# 创建网段, 名称: mynet, 分配两个容器在同一网段中 (这样子才可以互相通信)
+docker network create mynet
+docker run -d --net mynet --name container1 my_image
+docker run -it --net mynet --name container1 another_image
 ```
 
