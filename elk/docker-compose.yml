@@ -1,0 +1,47 @@
+version: '2'
+services:
+  kibana:
+    image: kibana:7.9.0
+    container_name: kibana-01
+    restart: always
+    ports:
+      - "5601:5601"
+    environment:
+      I18N_LOCALE: zh-CN #汉化
+      #SERVER_NAME: kibana.example.org
+      #ELASTICSEARCH_HOSTS: http://elasticsearch.example.org
+    # volumes:
+    #   - ./kibana.yml:/usr/share/kibana/config/kibana.yml
+    networks:
+      - elastic
+    links:
+      - es01:elasticsearch
+  es01:
+    image: elasticsearch:7.9.0
+    container_name: es01
+    environment:
+      - node.name=es01
+      # - cluster.name=es-docker-cluster
+      # - discovery.seed_hosts=es02,es03
+      # - cluster.initial_master_nodes=es01,es02,es03
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - data01:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
+    networks:
+      - elastic
+
+volumes:
+  data01:
+    driver: local
+
+networks:
+  elastic:
+    driver: bridge
