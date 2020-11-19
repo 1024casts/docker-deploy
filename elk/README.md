@@ -33,3 +33,4 @@ docker 安装：https://www.elastic.co/guide/en/kibana/current/docker.html
 ## Reference
 
 - https://juejin.im/post/6844903810536587277
+- [Logstash 最佳实践](https://doc.yonyoucloud.com/doc/logstash-best-practice-cn/index.html)
