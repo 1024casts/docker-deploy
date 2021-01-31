@@ -9,6 +9,13 @@ sudo docker run -d -p 9090:9090 -v /data/etc/prometheus.yml:/etc/prometheus/prom
 > 注意： -v 参数必须制定到绝对路径，否则会报错
 > 启动时加上“--web.enable-lifecycle”会启用远程热加载配置文件功能，调用指令是 curl -X POST http://localhost:9090/-/reload
 
+## docker 部署 grafana
+
+## grafana 插件推荐
+
+- 监控node 使用 8919
+
+
 
 ## 参考
 
