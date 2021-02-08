@@ -26,14 +26,17 @@ services:
     ports:
       - '9100:9100'
   grafana:
-    image: grafana/grafana:4.6.2
+    image: grafana/grafana:4.7.2
     container_name: grafana
     hostname: grafana
     volumes:
       # - ./grafana.ini:/etc/grafana/grafana.ini
       - grafana_data:/var/lib/grafana
     environment:
-      - GF_SECURITY_ADMIN_PASSWORD=pass
+      - GF_SECURITY_ADMIN_USER=${ADMIN_USER}
+      - GF_SECURITY_ADMIN_PASSWORD=${ADMIN_PASSWORD}
+      - GF_USERS_ALLOW_SIGN_UP=false
+    restart: unless-stopped
     depends_on:
       - prometheus
     ports:
