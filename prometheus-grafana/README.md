@@ -1,4 +1,7 @@
 
+# prometheus 和 grafana 监控
+
+node面板可以使用：https://grafana.com/grafana/dashboards/1860
 
 ## Reference
 
