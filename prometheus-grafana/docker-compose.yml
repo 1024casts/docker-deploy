@@ -85,3 +85,7 @@ services:
 volumes:
   grafana_data: {}
   prometheus_data: {}
+  
+networks:
+  monitor-net:
+    driver: bridge
