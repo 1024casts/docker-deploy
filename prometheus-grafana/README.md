@@ -4,10 +4,8 @@
 node面板可以使用：https://grafana.com/grafana/dashboards/1860
 
 
-## 注意
-- 需要提前创建docker网络：
-  - 查看：docker network create --driver bridge monitor-net
-  - 创建：docker network inspect monitor-net
+## 监控面板
+- 1860 监控节点机器
 
 ## Reference
 
