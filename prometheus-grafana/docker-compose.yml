@@ -16,6 +16,7 @@ services:
     image: prom/node-exporter:v0.15.2
     container_name: prometheus-exporter
     hostname: prometheus-exporter
+    --collector.filesystem.ignored-mount-points "^/rootfs/(var/lib/docker/)|(run/docker/netns/).*"
     volumes:
       - /proc:/host/proc:ro
       - /sys:/host/sys:ro

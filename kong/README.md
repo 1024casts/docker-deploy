@@ -43,7 +43,7 @@ docker run --rm \
      -e "KONG_PG_USER=kong" \
      -e "KONG_PG_PASSWORD=kong" \
      -e "KONG_CASSANDRA_CONTACT_POINTS=kong-database" \
-     kong:latest kong migrations bootstrap
+     kong:1.1.2 kong migrations bootstrap
 
 ```
 

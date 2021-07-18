@@ -19,7 +19,7 @@ scrape_configs:
     scrape_interval: 10s  # 抓取间隔
     metrics_path: /metrics  # 抓取数据的URL路径
     static_configs:
-      - targets: ['192.168.31.245:8080'] # 抓取数据的IP地址，如果运行在容器，则需要宿主机的ip
+      - targets: ['192.168.31.245:8088'] # 抓取数据的IP地址，如果运行在容器，则需要宿主机的ip
         labels:
           instance: go-snake
           

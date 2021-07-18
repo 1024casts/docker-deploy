@@ -24,6 +24,11 @@ docker 安装：https://www.elastic.co/guide/en/kibana/current/docker.html
 
 > https://www.elastic.co/guide/en/beats/filebeat/current/filebeat-installation-configuration.html
 
+运行 filebeat
+
+```bash
+sudo ./filebeat -e -c filebeat.yml
+```
 
 
 ## Reference

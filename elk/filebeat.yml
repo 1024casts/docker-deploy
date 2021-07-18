@@ -1,0 +1,26 @@
+output.elasticsearch:
+  hosts: ["127.0.0.1:9200"]
+  username: "elastic"
+  password: ""
+setup.kibana:
+  host: "127.0.0.1:5601"
+
+filebeat.inputs:
+  - type: log
+    paths:
+      - /var/log/system.log
+      - /var/log/wifi.log
+  - type: log
+    paths:
+      - "/var/log/apache2/*"
+    fields:
+      apache: true
+    fields_under_root: true
+  - type: redis
+    hosts: ["localhost:6379"]
+    password: ""
+
+filebeat.modules:
+  - module: nginx
+  - module: mysql
+  - module: system

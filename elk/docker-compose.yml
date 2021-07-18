@@ -1,5 +1,14 @@
 version: '2'
 services:
+  cerebro:
+    image: lmenezes/cerebro:0.8.3
+    container_name: cerebro
+    ports:
+      - "9000:9000"
+    command:
+      - -Dhosts.0.host=http://elasticsearch:9200
+    networks:
+      -  
   kibana:
     image: kibana:7.9.0
     container_name: kibana-01
