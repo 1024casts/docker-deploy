@@ -33,4 +33,6 @@ docker 安装：https://www.elastic.co/guide/en/kibana/current/docker.html
 ## Reference
 
 - https://juejin.im/post/6844903810536587277
+- [Running the Elastic Stack on Dockeredit
+](https://www.elastic.co/guide/en/elastic-stack-get-started/current/get-started-docker.html)
 - [Logstash 最佳实践](https://doc.yonyoucloud.com/doc/logstash-best-practice-cn/index.html)
