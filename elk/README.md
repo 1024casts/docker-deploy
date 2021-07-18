@@ -20,6 +20,10 @@ docker 安装：https://www.elastic.co/guide/en/kibana/current/docker.html
 
 `docker pull docker.elastic.co/kibana/kibana:7.9.0`
 
+### 安装 Logstash
+
+> https://www.elastic.co/guide/en/logstash/current/installing-logstash.html
+
 ### 安装 filebeat
 
 > https://www.elastic.co/guide/en/beats/filebeat/current/filebeat-installation-configuration.html
@@ -34,3 +38,6 @@ sudo ./filebeat -e -c filebeat.yml
 ## Reference
 
 - https://juejin.im/post/6844903810536587277
+- [Running the Elastic Stack on Dockeredit
+](https://www.elastic.co/guide/en/elastic-stack-get-started/current/get-started-docker.html)
+- [Logstash 最佳实践](https://doc.yonyoucloud.com/doc/logstash-best-practice-cn/index.html)

@@ -1,4 +1,5 @@
 
+# prometheus 和 grafana 监控
 
 ## docker 部署 Prometheus
 
@@ -22,3 +23,15 @@ sudo docker run -d -p 9090:9090 -v /data/etc/prometheus.yml:/etc/prometheus/prom
 http://cizixs.com/2018/01/24/use-prometheus-and-grafana-to-monitor-linux-machine/
 https://songjiayang.gitbooks.io/prometheus/content/
 https://github.com/songjiayang/prometheus_practice
+=======
+node面板可以使用：https://grafana.com/grafana/dashboards/1860
+
+
+## 监控面板
+- 1860 监控节点机器
+
+## Reference
+
+- http://cizixs.com/2018/01/24/use-prometheus-and-grafana-to-monitor-linux-machine/
+- https://www.bogotobogo.com/DevOps/Docker/Docker_Prometheus_Grafana.php
+- https://github.com/Einsteinish/Docker-Compose-Prometheus-and-Grafana
